@@ -2,24 +2,39 @@ import pyautogui
 from PIL import Image, ImageGrab
 import time
 
-def isColliding(data):
-    for i in range(505, 565):
-        for j in range(605, 675):
-            if data[i, j] < 100:
-                pyautogui.press("up")
-                return
+xi = 500
+xf = 600
+count = 0
+
+def isColliding(img):
+    global count
+    for i in range(xi,xf):
+        for j in range(650,700):
+            if img[i,j] !=  img[59,165]:
+                count = count + 1
+                pyautogui.press('up')
+                return 
+
+    for i in range(xi,xf):
+        for j in range(590,630):
+            if img[i,j] !=  img[59,165]:
+                count = count + 1
+                pyautogui.keyDown('down')
+                time.sleep(0.3)
+                pyautogui.keyUp('down')
+                return 
+
     return
+
+
 
 if __name__ == "__main__":
     time.sleep(2)
     while True:
+        if count > 10:
+            count = 0
+            xi = xi+5
+            xf = xf+5 
         image = ImageGrab.grab().convert('L')  
         data = image.load()
         isColliding(data)
-
-        '''for i in range(505, 575):
-            for j in range(605, 675):
-                data[i, j] = 0
-        image.show()
-        break'''
-        #470 530 562 670
