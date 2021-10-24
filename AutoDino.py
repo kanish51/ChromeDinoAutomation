@@ -34,7 +34,7 @@ if __name__ == "__main__":
         if count > 10:
             count = 0
             xi = xi+5
-            xf = xf+5 
+            xf = xf+15 
         image = ImageGrab.grab().convert('L')  
         data = image.load()
         isColliding(data)
